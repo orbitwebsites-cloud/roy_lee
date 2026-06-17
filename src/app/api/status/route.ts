@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { aiEnabled } from "@/lib/anthropic";
+import { aiEnabled, aiInfo } from "@/lib/ai";
 
-// Lets the client show whether live Claude analysis or the offline demo model
-// is active, without exposing any secret.
+// Lets the client show which provider/model powers each workload, without
+// exposing any secret.
 export async function GET() {
-  return NextResponse.json({ ai: aiEnabled() });
+  return NextResponse.json({ ai: aiEnabled(), ...aiInfo() });
 }

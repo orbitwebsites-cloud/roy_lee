@@ -23,7 +23,18 @@ npm install
 npm run dev      # http://localhost:3000
 ```
 
-Works with **no API key** — a built-in demo model returns a realistic scan so the whole flow is usable offline. For live Claude vision analysis, set `ANTHROPIC_API_KEY` (see `.env.example`); the app uses `claude-opus-4-8`.
+Works with **no API key** — a built-in demo model returns a realistic scan so the whole flow is usable offline.
+
+### AI providers (cheap/free, swappable)
+
+The two AI workloads route through a provider-agnostic layer (`src/lib/ai.ts`). All non-Anthropic providers are OpenAI-compatible, so swapping is just a base URL + key. Pick a provider per workload via `MIRROR_PROVIDER` / `CLOSER_PROVIDER` (see `.env.example`):
+
+| Workload | Needs | Good cheap/free options (defaults) |
+|---|---|---|
+| **Mirror** | vision | Groq `llama-4-scout`, SiliconFlow `Qwen2.5-VL-72B`, OpenRouter `qwen2.5-vl-72b:free`, or Claude |
+| **Closer** | text | Cerebras `gpt-oss-120b` (fastest), Groq, OpenRouter `:free`, SiliconFlow, or Claude |
+
+Every provider call falls back to the demo model on error, so a rate-limited or unreachable provider never breaks the app. **Privacy:** Mirror sends faces (biometric data) — choose that provider with data-residency + no-training terms in mind; Closer carries no sensitive data and can use the cheapest option.
 
 ```bash
 npm run build && npm start   # production build

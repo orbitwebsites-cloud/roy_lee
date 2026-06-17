@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { analyzeSelfie } from "@/lib/anthropic";
+import { analyzeSelfie } from "@/lib/ai";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;

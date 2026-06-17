@@ -25,13 +25,16 @@ export default function MePage() {
   const closer = useStoreValue(getCloser);
   const events = useStoreValue(getEvents);
   const [confirm, setConfirm] = useState(false);
-  const [ai, setAi] = useState<string>("…");
+  const [ai, setAi] = useState<{ mirror: string; closer: string }>({
+    mirror: "…",
+    closer: "…",
+  });
 
   useEffect(() => {
     fetch("/api/status")
       .then((r) => r.json())
-      .then((d) => setAi(d.ai ? "Claude vision (live)" : "Demo model (no API key)"))
-      .catch(() => setAi("Demo model"));
+      .then((d) => setAi({ mirror: d.mirror, closer: d.closer }))
+      .catch(() => setAi({ mirror: "Demo model", closer: "Demo model" }));
   }, []);
 
   const shares = events.filter((e) => e.type === "share").length;
@@ -91,10 +94,12 @@ export default function MePage() {
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted">
           Engine
         </h2>
-        <Row label="AI analysis" value={ai} />
+        <Row label="Mirror (vision)" value={ai.mirror} />
+        <Row label="Closer (text)" value={ai.closer} />
         <p className="mt-1 text-[11px] text-muted">
-          When an Anthropic API key is configured, scans use Claude vision. Otherwise a
-          built-in demo model runs so the full flow is usable offline.
+          Each workload routes to a configured provider (Claude, Groq, Cerebras,
+          SiliconFlow, or OpenRouter). With no keys set, a built-in demo model runs so
+          the full flow is usable offline.
         </p>
       </section>
 

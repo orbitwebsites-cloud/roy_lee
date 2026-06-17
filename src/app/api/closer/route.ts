@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { runCloser } from "@/lib/anthropic";
+import { runCloser } from "@/lib/ai";
 import type { CloserKind } from "@/lib/types";
 
 export const runtime = "nodejs";
