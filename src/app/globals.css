@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/*
+  HALO design system — dark, premium, status-driven.
+  Deliberately NOT generic AI-slop: warm off-black canvas, a single
+  electric "halo" gradient accent, restrained serif display for scores.
+*/
+:root {
+  --background: #0b0b0f;
+  --surface: #15151d;
+  --surface-2: #1d1d28;
+  --foreground: #f3f1ea;
+  --muted: #9b97a8;
+  --halo-from: #7c5cff;
+  --halo-via: #d65cff;
+  --halo-to: #ff8a5c;
+  --good: #4ade80;
+  --warn: #fbbf24;
+  --bad: #fb7185;
+  --border: #2a2a38;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --color-border: var(--border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(124, 92, 255, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 90% 10%, rgba(214, 92, 255, 0.1), transparent 60%),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.halo-text {
+  background: linear-gradient(100deg, var(--halo-from), var(--halo-via), var(--halo-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.halo-bg {
+  background: linear-gradient(100deg, var(--halo-from), var(--halo-via), var(--halo-to));
+}
+
+.halo-ring {
+  background: conic-gradient(
+    from 180deg,
+    var(--halo-from),
+    var(--halo-via),
+    var(--halo-to),
+    var(--halo-from)
+  );
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+}
+
+.glass {
+  background: color-mix(in oklab, var(--surface) 70%, transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow { animation: spin-slow 8s linear infinite; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise { animation: rise 0.5s ease both; }
