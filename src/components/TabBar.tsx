@@ -13,19 +13,32 @@ const tabs = [
 export default function TabBar() {
   const path = usePathname();
   return (
-    <nav className="glass sticky bottom-0 z-40 mx-auto flex w-full max-w-md items-center justify-around rounded-t-2xl px-2 py-2">
+    <nav className="glass sticky bottom-0 z-40 mx-auto flex w-full max-w-md items-center justify-around rounded-t-3xl px-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2">
       {tabs.map((t) => {
         const active = t.href === "/" ? path === "/" : path.startsWith(t.href);
         return (
           <Link
             key={t.href}
             href={t.href}
-            className={`flex flex-1 flex-col items-center gap-0.5 rounded-xl py-1.5 text-[11px] transition ${
-              active ? "text-foreground" : "text-muted"
-            }`}
+            className="group relative flex flex-1 flex-col items-center gap-1 py-1.5"
           >
-            <span className={`text-lg ${active ? "halo-text" : ""}`}>{t.icon}</span>
-            {t.label}
+            {active && (
+              <span className="halo-bg absolute -top-2 h-1 w-7 rounded-full" />
+            )}
+            <span
+              className={`text-lg transition ${
+                active ? "halo-text" : "text-faint group-hover:text-muted"
+              }`}
+            >
+              {t.icon}
+            </span>
+            <span
+              className={`text-[10px] font-medium tracking-wide transition ${
+                active ? "text-foreground" : "text-faint"
+              }`}
+            >
+              {t.label}
+            </span>
           </Link>
         );
       })}

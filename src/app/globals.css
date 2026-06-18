@@ -1,23 +1,27 @@
 @import "tailwindcss";
 
 /*
-  HALO design system — dark, premium, status-driven.
-  Deliberately NOT generic AI-slop: warm off-black canvas, a single
-  electric "halo" gradient accent, restrained serif display for scores.
+  HALO design system v2 — "champagne halo".
+  Warm near-black canvas, a single refined gold accent (not the purple AI-slop
+  cliché), strong type scale, tactile cards. Premium and status-driven.
 */
 :root {
-  --background: #0b0b0f;
-  --surface: #15151d;
-  --surface-2: #1d1d28;
-  --foreground: #f3f1ea;
-  --muted: #9b97a8;
-  --halo-from: #7c5cff;
-  --halo-via: #d65cff;
-  --halo-to: #ff8a5c;
-  --good: #4ade80;
-  --warn: #fbbf24;
-  --bad: #fb7185;
-  --border: #2a2a38;
+  --background: #0a0908;
+  --surface: #151311;
+  --surface-2: #1e1b17;
+  --foreground: #f7f3ea;
+  --muted: #9c948a;
+  --faint: #6b645c;
+
+  /* single warm accent — champagne -> gold -> bronze */
+  --halo-from: #fce9bd;
+  --halo-via: #e8c279;
+  --halo-to: #c08a3e;
+
+  --good: #8fd6a9;
+  --warn: #e8c279;
+  --bad: #de9078;
+  --border: #2a251f;
 }
 
 @theme inline {
@@ -26,64 +30,144 @@
   --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-faint: var(--faint);
   --color-good: var(--good);
   --color-warn: var(--warn);
   --color-bad: var(--bad);
   --color-border: var(--border);
+  --color-gold: var(--halo-via);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   background:
-    radial-gradient(1200px 600px at 50% -10%, rgba(124, 92, 255, 0.18), transparent 60%),
-    radial-gradient(900px 500px at 90% 10%, rgba(214, 92, 255, 0.1), transparent 60%),
+    radial-gradient(900px 460px at 50% -8%, rgba(232, 194, 121, 0.16), transparent 62%),
+    radial-gradient(700px 380px at 88% 4%, rgba(192, 138, 62, 0.08), transparent 60%),
     var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+
+/* faint film grain for richness */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.03em;
 }
 
 .halo-text {
-  background: linear-gradient(100deg, var(--halo-from), var(--halo-via), var(--halo-to));
+  background: linear-gradient(105deg, var(--halo-from), var(--halo-via) 55%, var(--halo-to));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .halo-bg {
-  background: linear-gradient(100deg, var(--halo-from), var(--halo-via), var(--halo-to));
+  background: linear-gradient(105deg, var(--halo-from), var(--halo-via) 52%, var(--halo-to));
+  color: #1a1408;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 10px 30px -12px rgba(232, 194, 121, 0.5);
+}
+.halo-bg:active {
+  transform: translateY(1px);
 }
 
 .halo-ring {
   background: conic-gradient(
-    from 180deg,
+    from 210deg,
+    var(--halo-to),
     var(--halo-from),
     var(--halo-via),
-    var(--halo-to),
-    var(--halo-from)
+    var(--halo-to)
   );
 }
 
 .card {
-  background: var(--surface);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 40%),
+    var(--surface);
   border: 1px solid var(--border);
-  border-radius: 1.25rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 24px 60px -40px rgba(0, 0, 0, 0.8);
 }
 
 .glass {
-  background: color-mix(in oklab, var(--surface) 70%, transparent);
-  backdrop-filter: blur(12px);
+  background: color-mix(in oklab, var(--surface) 78%, transparent);
+  backdrop-filter: blur(14px) saturate(1.2);
   border: 1px solid var(--border);
 }
 
-@keyframes spin-slow {
-  to { transform: rotate(360deg); }
+.hairline {
+  border-color: var(--border);
 }
-.animate-spin-slow { animation: spin-slow 8s linear infinite; }
+
+/* subtle gold focus ring for inputs */
+.focus-gold:focus {
+  border-color: var(--halo-via);
+  box-shadow: 0 0 0 3px rgba(232, 194, 121, 0.15);
+  outline: none;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 14s linear infinite;
+}
 
 @keyframes rise {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.animate-rise { animation: rise 0.5s ease both; }
+.animate-rise {
+  animation: rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+.animate-glow {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* tasteful number feel */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}

@@ -125,34 +125,44 @@ export default function ScanPage() {
 
       {stage === "intro" && (
         <div className="animate-rise">
-          <header className="mb-8 text-center">
-            <p className="text-xs uppercase tracking-[0.3em] text-muted">HALO</p>
-            <h1 className="mt-2 text-3xl font-bold leading-tight">
-              Your <span className="halo-text">unfair advantage</span> in attraction.
+          <header className="mb-7 mt-2 text-center">
+            <div className="mb-5 inline-flex items-center gap-2">
+              <span className="halo-ring h-4 w-4 rounded-full" />
+              <span className="text-sm font-semibold tracking-[0.35em] text-foreground">
+                HALO
+              </span>
+            </div>
+            <h1 className="text-[2.6rem] font-semibold leading-[1.05]">
+              Your <span className="halo-text">unfair&nbsp;advantage</span> in attraction.
             </h1>
-            <p className="mt-3 text-sm text-muted">
-              A private, honest baseline and a plan to level up — looks, grooming, style,
-              and confidence. No account needed to see your first score.
+            <p className="mx-auto mt-4 max-w-xs text-[15px] leading-relaxed text-muted">
+              A brutally honest baseline and a plan to level up — looks, grooming, style,
+              confidence. See your first score free, no account.
             </p>
           </header>
 
-          <div className="card grid place-items-center gap-5 p-8 text-center">
-            <ScoreRing score={0} size={150} label="scan to reveal" />
+          <div className="card grid place-items-center gap-6 p-8 text-center">
+            <ScoreRing score={0} size={156} label="scan to reveal" />
             <button
               onClick={pickFile}
-              className="halo-bg w-full rounded-2xl py-4 text-base font-semibold text-black"
+              className="halo-bg w-full rounded-2xl py-4 text-base font-semibold transition hover:brightness-105"
             >
               Scan my selfie
             </button>
-            <p className="text-xs text-muted">
-              Scan yourself only. Your photo is analyzed and never stored.
+            <p className="flex items-center justify-center gap-1.5 text-xs text-faint">
+              <span className="text-gold">✦</span> Yourself only · analyzed, never stored
             </p>
           </div>
 
-          <div className="mt-6 grid grid-cols-3 gap-2 text-center text-xs text-muted">
-            {["Honest baseline", "Ranked plan", "Track your glow-up"].map((t) => (
-              <div key={t} className="card px-2 py-3">
-                {t}
+          <div className="mt-4 grid grid-cols-3 gap-2.5 text-center">
+            {[
+              ["01", "Honest baseline"],
+              ["02", "Ranked plan"],
+              ["03", "Track the glow-up"],
+            ].map(([n, t]) => (
+              <div key={n} className="card px-2 py-4">
+                <div className="halo-text tabular text-lg font-semibold">{n}</div>
+                <div className="mt-1 text-[11px] leading-tight text-muted">{t}</div>
               </div>
             ))}
           </div>
