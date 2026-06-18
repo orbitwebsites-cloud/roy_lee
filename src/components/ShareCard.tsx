@@ -66,7 +66,7 @@ export default function ShareCard({
         <div className="space-y-2 p-4">
           <button
             onClick={() => share("score")}
-            className="halo-bg w-full rounded-xl py-3 text-sm font-semibold text-black"
+            className="halo-bg w-full rounded-xl py-3 text-sm font-semibold text-white"
           >
             {copied ? "Copied!" : "Share my glow-up"}
           </button>

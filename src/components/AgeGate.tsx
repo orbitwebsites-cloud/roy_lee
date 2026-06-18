@@ -57,7 +57,7 @@ export default function AgeGate({
           </button>
           <button
             onClick={submit}
-            className="halo-bg flex-1 rounded-xl py-2.5 text-sm font-semibold text-black"
+            className="halo-bg flex-1 rounded-xl py-2.5 text-sm font-semibold text-white"
           >
             Confirm
           </button>

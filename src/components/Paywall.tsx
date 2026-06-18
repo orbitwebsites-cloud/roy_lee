@@ -50,7 +50,7 @@ export default function Paywall({
         </div>
         <button
           onClick={subscribe}
-          className="halo-bg mt-4 w-full rounded-xl py-3 text-sm font-semibold text-black"
+          className="halo-bg mt-4 w-full rounded-xl py-3 text-sm font-semibold text-white"
         >
           Start Pro
         </button>

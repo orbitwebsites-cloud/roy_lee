@@ -59,7 +59,7 @@ export default function ProgressPage() {
         </p>
         <Link
           href="/"
-          className="halo-bg mt-5 inline-block rounded-xl px-6 py-3 text-sm font-semibold text-black"
+          className="halo-bg mt-5 inline-block rounded-xl px-6 py-3 text-sm font-semibold text-white"
         >
           Run a scan
         </Link>
@@ -132,7 +132,7 @@ export default function ProgressPage() {
           setShowShare(true);
           track("share_open", { from: "progress" });
         }}
-        className="halo-bg w-full rounded-xl py-3 text-sm font-semibold text-black"
+        className="halo-bg w-full rounded-xl py-3 text-sm font-semibold text-white"
       >
         Share my progress
       </button>

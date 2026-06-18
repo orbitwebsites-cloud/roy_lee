@@ -128,7 +128,7 @@ export default function MePage() {
                 deleteEverything();
                 setConfirm(false);
               }}
-              className="flex-1 rounded-xl bg-bad py-2.5 text-sm font-semibold text-black"
+              className="flex-1 rounded-xl bg-bad py-2.5 text-sm font-semibold text-white"
             >
               Delete it all
             </button>

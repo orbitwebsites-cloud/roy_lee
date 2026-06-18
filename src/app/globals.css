@@ -1,27 +1,27 @@
 @import "tailwindcss";
 
 /*
-  HALO design system v2 — "champagne halo".
-  Warm near-black canvas, a single refined gold accent (not the purple AI-slop
-  cliché), strong type scale, tactile cards. Premium and status-driven.
+  HALO design system v3 — "clean light".
+  Warm off-white canvas, near-black ink, lots of whitespace, one warm coral
+  accent. Friendly, premium, beauty-adjacent (Apple Health / Glossier energy).
 */
 :root {
-  --background: #0a0908;
-  --surface: #151311;
-  --surface-2: #1e1b17;
-  --foreground: #f7f3ea;
-  --muted: #9c948a;
-  --faint: #6b645c;
+  --background: #faf8f5;
+  --surface: #ffffff;
+  --surface-2: #f1efea;
+  --foreground: #17151a;
+  --muted: #6f6a73;
+  --faint: #a9a4ac;
 
-  /* single warm accent — champagne -> gold -> bronze */
-  --halo-from: #fce9bd;
-  --halo-via: #e8c279;
-  --halo-to: #c08a3e;
+  /* one warm accent — peach -> coral -> rose */
+  --halo-from: #ff8a5c;
+  --halo-via: #ff5470;
+  --halo-to: #ff3d7f;
 
-  --good: #8fd6a9;
-  --warn: #e8c279;
-  --bad: #de9078;
-  --border: #2a251f;
+  --good: #1bb673;
+  --warn: #e6920a;
+  --bad: #f43f5e;
+  --border: #ece8e2;
 }
 
 @theme inline {
@@ -46,28 +46,13 @@ html {
 
 body {
   background:
-    radial-gradient(900px 460px at 50% -8%, rgba(232, 194, 121, 0.16), transparent 62%),
-    radial-gradient(700px 380px at 88% 4%, rgba(192, 138, 62, 0.08), transparent 60%),
+    radial-gradient(900px 520px at 50% -12%, rgba(255, 84, 112, 0.1), transparent 62%),
+    radial-gradient(700px 420px at 85% 2%, rgba(255, 138, 92, 0.07), transparent 60%),
     var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  letter-spacing: -0.01em;
-}
-
-/* faint film grain for richness */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-body > * {
-  position: relative;
-  z-index: 1;
+  letter-spacing: -0.011em;
 }
 
 h1,
@@ -77,18 +62,18 @@ h3 {
 }
 
 .halo-text {
-  background: linear-gradient(105deg, var(--halo-from), var(--halo-via) 55%, var(--halo-to));
+  background: linear-gradient(105deg, var(--halo-from), var(--halo-via) 52%, var(--halo-to));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .halo-bg {
-  background: linear-gradient(105deg, var(--halo-from), var(--halo-via) 52%, var(--halo-to));
-  color: #1a1408;
+  background: linear-gradient(105deg, var(--halo-from), var(--halo-via) 50%, var(--halo-to));
+  color: #fff;
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.25) inset,
-    0 10px 30px -12px rgba(232, 194, 121, 0.5);
+    0 1px 0 rgba(255, 255, 255, 0.35) inset,
+    0 14px 30px -14px rgba(255, 84, 112, 0.55);
 }
 .halo-bg:active {
   transform: translateY(1px);
@@ -105,28 +90,24 @@ h3 {
 }
 
 .card {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 40%),
-    var(--surface);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 1.5rem;
-  box-shadow: 0 24px 60px -40px rgba(0, 0, 0, 0.8);
+  box-shadow:
+    0 1px 2px rgba(16, 15, 20, 0.04),
+    0 14px 36px -22px rgba(16, 15, 20, 0.18);
 }
 
 .glass {
-  background: color-mix(in oklab, var(--surface) 78%, transparent);
-  backdrop-filter: blur(14px) saturate(1.2);
+  background: color-mix(in oklab, white 82%, transparent);
+  backdrop-filter: blur(16px) saturate(1.3);
   border: 1px solid var(--border);
+  box-shadow: 0 -8px 30px -20px rgba(16, 15, 20, 0.15);
 }
 
-.hairline {
-  border-color: var(--border);
-}
-
-/* subtle gold focus ring for inputs */
 .focus-gold:focus {
   border-color: var(--halo-via);
-  box-shadow: 0 0 0 3px rgba(232, 194, 121, 0.15);
+  box-shadow: 0 0 0 3px rgba(255, 84, 112, 0.15);
   outline: none;
 }
 
@@ -136,7 +117,7 @@ h3 {
   }
 }
 .animate-spin-slow {
-  animation: spin-slow 14s linear infinite;
+  animation: spin-slow 16s linear infinite;
 }
 
 @keyframes rise {
@@ -156,17 +137,16 @@ h3 {
 @keyframes glow-pulse {
   0%,
   100% {
-    opacity: 0.5;
+    opacity: 0.35;
   }
   50% {
-    opacity: 0.85;
+    opacity: 0.6;
   }
 }
 .animate-glow {
-  animation: glow-pulse 4s ease-in-out infinite;
+  animation: glow-pulse 4.5s ease-in-out infinite;
 }
 
-/* tasteful number feel */
 .tabular {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";

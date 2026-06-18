@@ -14,7 +14,7 @@ export default function PlanList({ plan }: { plan: ImprovementItem[] }) {
       {plan.map((p) => (
         <div key={p.rank} className="card p-4 animate-rise">
           <div className="flex items-start gap-3">
-            <div className="halo-bg grid h-7 w-7 shrink-0 place-items-center rounded-full text-sm font-bold text-black">
+            <div className="halo-bg grid h-7 w-7 shrink-0 place-items-center rounded-full text-sm font-bold text-white">
               {p.rank}
             </div>
             <div className="min-w-0 flex-1">

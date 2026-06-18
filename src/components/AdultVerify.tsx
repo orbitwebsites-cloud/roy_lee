@@ -24,7 +24,7 @@ export default function AdultVerify({ onVerified }: { onVerified: () => void }) 
 
   return (
     <div className="card mx-auto mt-10 max-w-sm p-6 text-center animate-rise">
-      <div className="mx-auto grid h-14 w-14 place-items-center rounded-full halo-bg text-2xl text-black">
+      <div className="mx-auto grid h-14 w-14 place-items-center rounded-full halo-bg text-2xl text-white">
         ♥
       </div>
       <h3 className="mt-4 text-lg font-bold">Verify you&apos;re an adult</h3>
@@ -35,7 +35,7 @@ export default function AdultVerify({ onVerified }: { onVerified: () => void }) 
       <button
         onClick={verify}
         disabled={state !== "idle"}
-        className="halo-bg mt-5 w-full rounded-xl py-3 text-sm font-semibold text-black disabled:opacity-60"
+        className="halo-bg mt-5 w-full rounded-xl py-3 text-sm font-semibold text-white disabled:opacity-60"
       >
         {state === "idle" && "Verify with secure provider"}
         {state === "checking" && "Verifying…"}

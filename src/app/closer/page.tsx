@@ -29,7 +29,7 @@ export default function CloserPage() {
   if (!profile.ageConfirmed18) {
     return (
       <div className="mt-20 text-center animate-rise">
-        <div className="mx-auto grid h-14 w-14 place-items-center rounded-full halo-bg text-2xl text-black">
+        <div className="mx-auto grid h-14 w-14 place-items-center rounded-full halo-bg text-2xl text-white">
           ♥
         </div>
         <h1 className="mt-4 text-2xl font-bold">Closer</h1>
@@ -39,7 +39,7 @@ export default function CloserPage() {
         </p>
         <button
           onClick={() => setShowAge(true)}
-          className="halo-bg mt-6 rounded-xl px-6 py-3 text-sm font-semibold text-black"
+          className="halo-bg mt-6 rounded-xl px-6 py-3 text-sm font-semibold text-white"
         >
           I&apos;m 18 or older
         </button>
@@ -119,7 +119,7 @@ function CloserTools({ subscribed, usedCount }: { subscribed: boolean; usedCount
               setResult(null);
             }}
             className={`rounded-xl px-2 py-2 text-xs font-medium transition ${
-              kind === t.kind ? "halo-bg text-black" : "card text-muted"
+              kind === t.kind ? "halo-bg text-white" : "card text-muted"
             }`}
           >
             {t.label}
@@ -138,7 +138,7 @@ function CloserTools({ subscribed, usedCount }: { subscribed: boolean; usedCount
       <button
         onClick={run}
         disabled={loading}
-        className="halo-bg w-full rounded-xl py-3 text-sm font-semibold text-black disabled:opacity-60"
+        className="halo-bg w-full rounded-xl py-3 text-sm font-semibold text-white disabled:opacity-60"
       >
         {loading ? "Coaching…" : "Get suggestions"}
       </button>

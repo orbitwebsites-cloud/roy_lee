@@ -185,7 +185,7 @@ export default function ScanPage() {
           </ul>
           <button
             onClick={analyze}
-            className="halo-bg mt-5 w-full rounded-xl py-3 text-sm font-semibold text-black"
+            className="halo-bg mt-5 w-full rounded-xl py-3 text-sm font-semibold text-white"
           >
             I agree — analyze my photo
           </button>
@@ -210,7 +210,7 @@ export default function ScanPage() {
           <p className="text-sm">{error}</p>
           <button
             onClick={() => setStage("intro")}
-            className="halo-bg mt-5 rounded-xl px-6 py-2.5 text-sm font-semibold text-black"
+            className="halo-bg mt-5 rounded-xl px-6 py-2.5 text-sm font-semibold text-white"
           >
             Try again
           </button>
@@ -258,7 +258,7 @@ export default function ScanPage() {
                 setShowShare(true);
                 track("share_open");
               }}
-              className="halo-bg w-full rounded-xl py-3 text-sm font-semibold text-black"
+              className="halo-bg w-full rounded-xl py-3 text-sm font-semibold text-white"
             >
               Share my glow-up
             </button>
